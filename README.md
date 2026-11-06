@@ -26,9 +26,9 @@
 | `EMAIL_TO` | 收件邮箱；多个地址用英文逗号分隔，不带显示名称 |
 | `EMAIL_FROM` | 可选，发件邮箱；默认使用 `SMTP_USER` |
 
-3. 如需调整参数，在同一页面的 **Variables** 中添加 Repository variables：
+3. 如需调整以下可选参数，也在 **Secrets** 中添加 Repository secrets；未设置时使用默认值。GitHub Actions 的所有配置均从 Secrets 读取。`LLM_API_KEY` 必须与 `LLM_BASE_URL` 对应的服务商匹配。
 
-| Variable | 默认值 | 说明 |
+| Secret | 默认值 | 说明 |
 | --- | --- | --- |
 | `LLM_BASE_URL` | `https://api.openai.com/v1` | 接口基础地址，不包含 `/chat/completions` |
 | `LLM_MODEL` | `gpt-4o-mini` | 服务商支持的模型名 |

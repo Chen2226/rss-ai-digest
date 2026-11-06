@@ -39,12 +39,12 @@ jobs:
           SMTP_PASS: ${{ secrets.SMTP_PASS }}
           EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
           EMAIL_TO: ${{ secrets.EMAIL_TO }}
-          LLM_BASE_URL: ${{ vars.LLM_BASE_URL || 'https://api.openai.com/v1' }}
-          LLM_MODEL: ${{ vars.LLM_MODEL || 'gpt-4o-mini' }}
-          SMTP_PORT: ${{ vars.SMTP_PORT || '465' }}
-          SMTP_SECURE: ${{ vars.SMTP_SECURE }}
-          TIMEZONE: ${{ vars.TIMEZONE || 'Asia/Hong_Kong' }}
-          LOOKBACK_HOURS: ${{ vars.LOOKBACK_HOURS || '24' }}
-          MAX_ARTICLES: ${{ vars.MAX_ARTICLES || '300' }}
-          SUMMARY_LENGTH: ${{ vars.SUMMARY_LENGTH || '250' }}
-          MARK_AS_READ: ${{ vars.MARK_AS_READ || 'false' }}
+          LLM_BASE_URL: ${{ secrets.LLM_BASE_URL || 'https://api.openai.com/v1' }}
+          LLM_MODEL: ${{ secrets.LLM_MODEL || 'gpt-4o-mini' }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT || '465' }}
+          SMTP_SECURE: ${{ secrets.SMTP_SECURE }}
+          TIMEZONE: ${{ secrets.TIMEZONE || 'Asia/Hong_Kong' }}
+          LOOKBACK_HOURS: ${{ secrets.LOOKBACK_HOURS || '24' }}
+          MAX_ARTICLES: ${{ secrets.MAX_ARTICLES || '300' }}
+          SUMMARY_LENGTH: ${{ secrets.SUMMARY_LENGTH || '250' }}
+          MARK_AS_READ: ${{ secrets.MARK_AS_READ || 'false' }}
