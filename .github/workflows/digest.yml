@@ -1,0 +1,50 @@
+name: FreshRSS Email Digest
+
+on:
+  schedule:
+    # UTC 00:15 = 香港 / 北京时间 08:15。
+    - cron: '15 0 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: freshrss-email-digest
+  cancel-in-progress: false
+
+jobs:
+  digest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - name: Generate and email digest
+        run: npm start
+        env:
+          FRESHRSS_FEVER_URL: ${{ secrets.FRESHRSS_FEVER_URL }}
+          FRESHRSS_USER: ${{ secrets.FRESHRSS_USER }}
+          FRESHRSS_API_PASS: ${{ secrets.FRESHRSS_API_PASS }}
+          LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASS: ${{ secrets.SMTP_PASS }}
+          EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          LLM_BASE_URL: ${{ vars.LLM_BASE_URL || 'https://api.openai.com/v1' }}
+          LLM_MODEL: ${{ vars.LLM_MODEL || 'gpt-4o-mini' }}
+          SMTP_PORT: ${{ vars.SMTP_PORT || '465' }}
+          SMTP_SECURE: ${{ vars.SMTP_SECURE }}
+          TIMEZONE: ${{ vars.TIMEZONE || 'Asia/Hong_Kong' }}
+          LOOKBACK_HOURS: ${{ vars.LOOKBACK_HOURS || '24' }}
+          MAX_ARTICLES: ${{ vars.MAX_ARTICLES || '300' }}
+          SUMMARY_LENGTH: ${{ vars.SUMMARY_LENGTH || '250' }}
+          MARK_AS_READ: ${{ vars.MARK_AS_READ || 'false' }}

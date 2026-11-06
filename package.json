@@ -1,0 +1,19 @@
+{
+  "name": "freshrss-ai-digest",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "FreshRSS AI digest delivered by email",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "start": "node digest.mjs",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "entities": "^8.1.0",
+    "markdown-it": "^15.0.3",
+    "nodemailer": "^10.3.1"
+  }
+}
