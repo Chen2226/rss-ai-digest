@@ -3,7 +3,7 @@ name: FreshRSS Email Digest
 on:
   schedule:
     # UTC 00:15 = 香港 / 北京时间 08:15。
-    - cron: '15 0 * * *'
+    - cron: '45 21 * * *'
   workflow_dispatch:
 
 permissions:
